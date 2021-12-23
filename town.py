@@ -103,6 +103,7 @@ class Player(pygame.sprite.Sprite):
 
 
 class NPC(pygame.sprite.Sprite):
+    funtions = {}
     def __init__(self, number, pos_x, pos_y):
         super().__init__(all_sprites, Npc_group)
         self.type = number
