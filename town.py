@@ -1,6 +1,9 @@
+import random
+
 import pygame
 import sys
 import os
+from time import sleep
 
 FPS = 50
 
@@ -103,7 +106,6 @@ class Player(pygame.sprite.Sprite):
 
 
 class NPC(pygame.sprite.Sprite):
-    funtions = {}
     def __init__(self, number, pos_x, pos_y):
         super().__init__(all_sprites, Npc_group)
         self.type = number
@@ -114,7 +116,32 @@ class NPC(pygame.sprite.Sprite):
             tile_height * pos_y + (50 - self.image.get_height()) // 2)
 
     def show_dialog(self):
-        start_screen()
+        filename = "data/npc/dialogs.txt"
+        # читаем уровень, убирая символы перевода строки
+        with open(filename, 'r', encoding='utf-8') as mapFile:
+            lines = [line.strip() for line in mapFile]
+        line = random.choice(lines)
+
+        screen2 = pygame.Surface((WIDTH * 0.8, HEIGHT * 0.4))
+        screen2.fill((150, 150, 250))
+
+        font = pygame.font.Font(None, 25)
+        text = font.render(line, True, (0, 0, 0))
+        text_x = WIDTH * 0.4 - text.get_width() // 2
+        text_y = HEIGHT * 0.1
+        screen2.blit(text, (text_x, text_y))
+
+        screen.blit(screen2, (WIDTH * 0.1, HEIGHT * 0.1))
+
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    terminate()
+                elif event.type == pygame.KEYDOWN or \
+                        event.type == pygame.MOUSEBUTTONDOWN:
+                    return  # начинаем игру
+            pygame.display.flip()
+            clock.tick(FPS)
 
 
 class Camera:
@@ -193,8 +220,8 @@ def enter_city(city_name):
     global Npc_group
     Npc_group = pygame.sprite.Group()
 
-    tile_images['wall'] = load_image('house.png')
-    tile_images['empty'] = load_image('road.png')
+    tile_images['wall'] = load_image('icons\\house.png')
+    tile_images['empty'] = load_image('icons\\road.png')
 
     global player, level_x, level_y
     level = load_level(city_name)
@@ -248,7 +275,7 @@ def enter_city(city_name):
             if abs(sprite.pos_x - player.pos_x) <= 1 and abs(sprite.pos_y - player.pos_y) <= 1:
                 draw_text('нажмите space для диалога',
                           sprite.rect.x - tile_width // 2,
-                          sprite.rect.y - tile_height //2 )
+                          sprite.rect.y - tile_height // 2)
         pygame.display.flip()
         clock.tick(FPS)
 
@@ -264,9 +291,9 @@ camera = Camera()
 
 tile_width = tile_height = 50
 tile_images = {
-    'wall': load_image('house.png'),
-    'empty': load_image('road.png')
+    'wall': load_image('icons\\house.png'),
+    'empty': load_image('icons\\road.png')
 }
-player_image = load_image('player.png')
+player_image = load_image('icons\\player.png')
 
-enter_city("city1.txt")
+enter_city("city1\\city1.txt")
