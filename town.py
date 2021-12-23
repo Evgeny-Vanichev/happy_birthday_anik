@@ -1,9 +1,9 @@
 import random
+import sqlite3
 
 import pygame
 import sys
 import os
-from time import sleep
 
 FPS = 50
 
@@ -52,6 +52,13 @@ def load_image(name, colorkey=None):
         print(f"Файл с изображением '{fullname}' не найден")
         sys.exit()
     image = pygame.image.load(fullname)
+    if colorkey is not None:
+        image = image.convert()
+        if colorkey == -1:
+            colorkey = image.get_at((0, 0))
+        image.set_colorkey(colorkey)
+    else:
+        image = image.convert_alpha()
     return image
 
 
@@ -108,22 +115,28 @@ class Player(pygame.sprite.Sprite):
 class NPC(pygame.sprite.Sprite):
     def __init__(self, number, pos_x, pos_y):
         super().__init__(all_sprites, Npc_group)
-        self.type = number
+        self.type = self.get_type(number)
         self.pos_x, self.pos_y = pos_x, pos_y
         self.image = load_image(f'npc\\npc{number}.png')
         self.rect = self.image.get_rect().move(
             tile_width * pos_x + (50 - self.image.get_width()) // 2,
             tile_height * pos_y + (50 - self.image.get_height()) // 2)
 
+    def get_type(self, id):
+        con = sqlite3.connect("data\\npc\\npc.db")
+        return con.cursor().execute(
+            f"""SELECT function FROM functions
+        WHERE id == {id}""").fetchone()[0]
+
     def show_dialog(self):
-        filename = "data/npc/dialogs.txt"
+        filename = f"data/npc/{self.type}.txt"
         # читаем уровень, убирая символы перевода строки
         with open(filename, 'r', encoding='utf-8') as mapFile:
             lines = [line.strip() for line in mapFile]
         line = random.choice(lines)
 
         screen2 = pygame.Surface((WIDTH * 0.8, HEIGHT * 0.4))
-        screen2.fill((150, 150, 250))
+        screen2.fill((250, 230, 180))
 
         font = pygame.font.Font(None, 25)
         text = font.render(line, True, (0, 0, 0))
@@ -228,7 +241,6 @@ def enter_city(city_name):
     player, level_x, level_y = generate_level(level)
     PLAYER_MOVE_EVENT = pygame.USEREVENT + 1
     move = (0, 0)
-    time = 0
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -252,11 +264,11 @@ def enter_city(city_name):
                     pygame.time.set_timer(PLAYER_MOVE_EVENT, 250)
                 elif event.key == pygame.K_SPACE:
                     for sprite in Npc_group:
+                        if not isinstance(sprite, NPC):
+                            continue
                         if abs(sprite.pos_x - player.pos_x) <= 1 and abs(
                                 sprite.pos_y - player.pos_y) <= 1:
                             sprite.show_dialog()
-                """print()
-                print(*level, sep='\n')"""
             elif event.type == pygame.KEYUP:
                 move = (0, 0)
                 pygame.time.set_timer(PLAYER_MOVE_EVENT, 250)
@@ -272,6 +284,8 @@ def enter_city(city_name):
         screen.fill((0, 0, 0))
         all_sprites.draw(screen)
         for sprite in Npc_group:
+            if not isinstance(sprite, NPC):
+                continue
             if abs(sprite.pos_x - player.pos_x) <= 1 and abs(sprite.pos_y - player.pos_y) <= 1:
                 draw_text('нажмите space для диалога',
                           sprite.rect.x - tile_width // 2,
