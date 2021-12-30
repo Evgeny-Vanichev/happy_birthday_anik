@@ -1,7 +1,9 @@
+import csv
 import random
 import sqlite3
 
 import pygame
+import thorpy
 import sys
 import os
 
@@ -15,34 +17,46 @@ screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
 
 
-def load_level(filename):
-    filename = "data/" + filename
-    # читаем уровень, убирая символы перевода строки
-    with open(filename, 'r') as mapFile:
-        level_map = [line.strip() for line in mapFile]
+def start_screen():
+    intro_text = ["ЗАСТАВКА", "",
+                  "Правила игры",
+                  "Если в правилах несколько строк,",
+                  "приходится выводить их построчно"]
 
-    # и подсчитываем максимальную длину
-    max_width = max(map(len, level_map))
+    fon = pygame.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
+    screen.blit(fon, (0, 0))
+    font = pygame.font.Font(None, 30)
+    text_coord = 50
+    for line in intro_text:
+        string_rendered = font.render(line, True, pygame.Color('white'))
+        intro_rect = string_rendered.get_rect()
+        text_coord += 10
+        intro_rect.top = text_coord
+        intro_rect.x = 10
+        text_coord += intro_rect.height
 
-    # дополняем каждую строку пустыми клетками ('.')
-    return list(map(lambda x: x.ljust(max_width, '.'), level_map))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                terminate()
+            elif event.type == pygame.KEYDOWN or \
+                    event.type == pygame.MOUSEBUTTONDOWN:
+                return  # начинаем игру
+        pygame.display.flip()
+        clock.tick(FPS)
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                terminate()
+            elif event.type == pygame.KEYDOWN or \
+                    event.type == pygame.MOUSEBUTTONDOWN:
+                return  # начинаем игру
+        pygame.display.flip()
+        clock.tick(FPS)
 
 
-def generate_level(level):
-    new_player, x, y = None, None, None
-    player_x, player_y = None, None
-    for y in range(len(level)):
-        for x in range(len(level[y])):
-            Tile('empty', x, y)
-            if level[y][x] == '#':
-                Tile('wall', x, y)
-            elif level[y][x] == '@':
-                player_x, player_y = x, y
-            elif level[y][x] in '123456789':
-                NPC(level[y][x], x, y)
-    new_player = Player(player_x, player_y)
-    # вернем игрока, а также размер поля в клетках
-    return new_player, x, y
+def terminate():
+    pygame.quit()
+    sys.exit()
 
 
 def load_image(name, colorkey=None):
@@ -60,6 +74,46 @@ def load_image(name, colorkey=None):
     else:
         image = image.convert_alpha()
     return image
+
+
+def load_level(filename):
+    filename = "data/" + filename
+    # читаем уровень, убирая символы перевода строки
+    with open(filename, 'r') as mapFile:
+        level_map = [line.strip() for line in mapFile]
+
+    # и подсчитываем максимальную длину
+    max_width = max(map(len, level_map))
+
+    # дополняем каждую строку пустыми клетками ('.')
+    return list(map(lambda x: x.ljust(max_width, '.'), level_map))
+
+
+def generate_level(level, city):
+    new_player, x, y = None, None, None
+    player_x, player_y = None, None
+    for y in range(len(level)):
+        for x in range(len(level[y])):
+            Tile('empty', x, y)
+            if level[y][x] == '#':
+                Tile('wall', x, y)
+            elif level[y][x] == '@':
+                player_x, player_y = x, y
+            elif level[y][x] in '123456789':
+                create_npc(level[y][x], x, y, city)
+    new_player = Player(player_x, player_y)
+    # вернем игрока, а также размер поля в клетках
+    return new_player, x, y
+
+
+def create_npc(number, x, y, city):
+    """NPC(level[y][x], x, y)"""
+    con = sqlite3.connect("data\\npc\\npc.db")
+    npc_type = con.cursor().execute(
+        f"""SELECT function FROM functions
+            WHERE id == {number}""").fetchone()[0]
+    if npc_type == 'merchant':
+        Merchant(number, npc_type, x, y, city)
 
 
 class Tile(pygame.sprite.Sprite):
@@ -112,49 +166,127 @@ class Player(pygame.sprite.Sprite):
             self.pos_y -= dy
 
 
+def draw_text(text, x, y, foreground=(255, 255, 255), background=(0, 0, 0), surface=screen):
+    font = pygame.font.Font(None, 20)
+    text = font.render(text, True, foreground)
+
+    text_w = text.get_width()
+    text_h = text.get_height()
+    if background is not None:
+        pygame.draw.rect(surface, background,
+                         (x, y,
+                          text_w + 10,
+                          text_h + 10), 0)
+    surface.blit(text, (x + 5, y + 5))
+
+
 class NPC(pygame.sprite.Sprite):
-    def __init__(self, number, pos_x, pos_y):
+    def __init__(self, npc_number, npc_type, pos_x, pos_y, city):
         super().__init__(all_sprites, Npc_group)
-        self.type = self.get_type(number)
+        self.flag = True
         self.pos_x, self.pos_y = pos_x, pos_y
-        self.image = load_image(f'npc\\npc{number}.png')
+        self.npc_type = npc_type
+        self.city = city
+        self.image = load_image(f'npc\\npc{npc_number}.png')
         self.rect = self.image.get_rect().move(
             tile_width * pos_x + (50 - self.image.get_width()) // 2,
             tile_height * pos_y + (50 - self.image.get_height()) // 2)
 
-    def get_type(self, id):
-        con = sqlite3.connect("data\\npc\\npc.db")
-        return con.cursor().execute(
-            f"""SELECT function FROM functions
-        WHERE id == {id}""").fetchone()[0]
-
-    def show_dialog(self):
-        filename = f"data/npc/{self.type}.txt"
+    def get_line(self):
+        filename = f"data/npc/{self.npc_type}.txt"
         # читаем уровень, убирая символы перевода строки
         with open(filename, 'r', encoding='utf-8') as mapFile:
             lines = [line.strip() for line in mapFile]
-        line = random.choice(lines)
+        return random.choice(lines)
 
-        screen2 = pygame.Surface((WIDTH * 0.8, HEIGHT * 0.4))
+
+class Merchant(NPC):
+    def intro_dialog(self):
+        self.flag = True
+        line = self.get_line()
+        screen2 = pygame.Surface((WIDTH, HEIGHT * 0.5))
         screen2.fill((250, 230, 180))
-
         font = pygame.font.Font(None, 25)
         text = font.render(line, True, (0, 0, 0))
-        text_x = WIDTH * 0.4 - text.get_width() // 2
+        text_x = (WIDTH - text.get_width()) // 2
         text_y = HEIGHT * 0.1
         screen2.blit(text, (text_x, text_y))
-
-        screen.blit(screen2, (WIDTH * 0.1, HEIGHT * 0.1))
-
-        while True:
+        btn_open = thorpy.make_button("Магазин", func=self.open_shop)
+        btn_open.surface = screen2
+        btn_open.set_topleft((WIDTH * 0.2, HEIGHT * 0.4))
+        btn_open.blit()
+        btn_open.update()
+        btn_quit = thorpy.make_button("Пока", func=self.finish_dialog)
+        btn_quit.surface = screen2
+        btn_quit.set_topleft((WIDTH * 0.8, HEIGHT * 0.4))
+        btn_quit.blit()
+        btn_quit.update()
+        screen.blit(screen2, (0, 0))
+        while self.flag:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     terminate()
-                elif event.type == pygame.KEYDOWN or \
-                        event.type == pygame.MOUSEBUTTONDOWN:
-                    return  # начинаем игру
+                btn_open.react(event)
+                btn_quit.react(event)
             pygame.display.flip()
+            screen.blit(screen2, (0, 0))
             clock.tick(FPS)
+
+    def open_shop(self):
+        screen2 = pygame.Surface((WIDTH, HEIGHT))
+        screen2.fill((250, 230, 180))
+        elements = []
+        inserters = []
+        with open(f"data\\{self.city}\\2_shop.csv", mode='rt', encoding='utf-8') as csvfile:
+            reader = csv.reader(csvfile, delimiter=';', quotechar='"')
+            for i, line in enumerate(reader):
+                text1 = thorpy.OneLineText(line[0].ljust(20, ' ')+line[1])
+                text1.set_font('consolas')
+                inserter = thorpy.Inserter(value="0")
+                box = thorpy.Box([text1, inserter])
+                box.set_size((WIDTH * 0.75, 40))
+                thorpy.store(box, mode="h")
+                elements.append(box)
+                inserters.append(inserter)
+
+        central_box = thorpy.Box(elements=elements)
+        ''''''
+        central_box.set_main_color((255, 220, 130, 120))
+        central_box.set_size((WIDTH * 0.8, HEIGHT * 0.8))
+        central_box.set_topleft((50, 50))
+        central_box.add_lift()
+        menu = thorpy.Menu(central_box)
+        for element in menu.get_population():
+            element.surface = screen2
+        central_box.blit()
+        central_box.update()
+
+        btn_buy = thorpy.make_button("Совершить покупку", func=self.finish_dialog)
+        btn_buy.surface = screen2
+        btn_buy.set_topleft((WIDTH * 0.1, HEIGHT * 0.9))
+        btn_buy.blit()
+        btn_buy.update()
+
+        btn_quit = thorpy.make_button("Отменить покупку", func=self.finish_dialog)
+        btn_quit.surface = screen2
+        btn_quit.set_topleft((WIDTH * 0.7, HEIGHT * 0.9))
+        btn_quit.blit()
+        btn_quit.update()
+
+        screen.blit(screen2, (0, 0))
+        while self.flag:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    terminate()
+                btn_quit.react(event)
+                btn_buy.react(event)
+                menu.react(event)
+            pygame.display.flip()
+            screen.blit(screen2, (0, 0))
+            clock.tick(FPS)
+
+    def finish_dialog(self):
+        self.flag = False
 
 
 class Camera:
@@ -176,59 +308,6 @@ class Camera:
             self.dy = -(target.rect.y + target.rect.h // 2 - HEIGHT // 2)
 
 
-def terminate():
-    pygame.quit()
-    sys.exit()
-
-
-def start_screen():
-    intro_text = ["ЗАСТАВКА", "",
-                  "Правила игры",
-                  "Если в правилах несколько строк,",
-                  "приходится выводить их построчно"]
-
-    fon = pygame.transform.scale(load_image('fon.jpg'), (WIDTH, HEIGHT))
-    screen.blit(fon, (0, 0))
-    font = pygame.font.Font(None, 30)
-    text_coord = 50
-    for line in intro_text:
-        string_rendered = font.render(line, True, pygame.Color('white'))
-        intro_rect = string_rendered.get_rect()
-        text_coord += 10
-        intro_rect.top = text_coord
-        intro_rect.x = 10
-        text_coord += intro_rect.height
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                terminate()
-            elif event.type == pygame.KEYDOWN or \
-                    event.type == pygame.MOUSEBUTTONDOWN:
-                return  # начинаем игру
-        pygame.display.flip()
-        clock.tick(FPS)
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                terminate()
-            elif event.type == pygame.KEYDOWN or \
-                    event.type == pygame.MOUSEBUTTONDOWN:
-                return  # начинаем игру
-        pygame.display.flip()
-        clock.tick(FPS)
-
-
-def draw_text(text, x, y):
-    font = pygame.font.Font(None, 20)
-    text = font.render(text, True, (255, 255, 255))
-    text_w = text.get_width()
-    text_h = text.get_height()
-    pygame.draw.rect(screen, (0, 0, 0),
-                     (x, y,
-                      text_w + 10, text_h + 10), 0)
-    screen.blit(text, (x + 5, y + 5))
-
-
 def enter_city(city_name):
     global Npc_group
     Npc_group = pygame.sprite.Group()
@@ -237,8 +316,8 @@ def enter_city(city_name):
     tile_images['empty'] = load_image('icons\\road.png')
 
     global player, level_x, level_y
-    level = load_level(city_name)
-    player, level_x, level_y = generate_level(level)
+    level = load_level(city_name + '\\city.txt')
+    player, level_x, level_y = generate_level(level, city_name)
     PLAYER_MOVE_EVENT = pygame.USEREVENT + 1
     move = (0, 0)
     while True:
@@ -264,11 +343,9 @@ def enter_city(city_name):
                     pygame.time.set_timer(PLAYER_MOVE_EVENT, 250)
                 elif event.key == pygame.K_SPACE:
                     for sprite in Npc_group:
-                        if not isinstance(sprite, NPC):
-                            continue
                         if abs(sprite.pos_x - player.pos_x) <= 1 and abs(
                                 sprite.pos_y - player.pos_y) <= 1:
-                            sprite.show_dialog()
+                            sprite.intro_dialog()
             elif event.type == pygame.KEYUP:
                 move = (0, 0)
                 pygame.time.set_timer(PLAYER_MOVE_EVENT, 250)
@@ -310,4 +387,4 @@ tile_images = {
 }
 player_image = load_image('icons\\player.png')
 
-enter_city("city1\\city1.txt")
+enter_city("city1")
