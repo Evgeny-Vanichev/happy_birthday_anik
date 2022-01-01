@@ -108,7 +108,7 @@ def generate_level(level, city):
 
 def create_npc(number, x, y, city):
     """NPC(level[y][x], x, y)"""
-    con = sqlite3.connect("data\\npc\\npc.db")
+    con = sqlite3.connect("data/npc/npc.db")
     npc_type = con.cursor().execute(
         f"""SELECT function FROM functions
             WHERE id == {number}""").fetchone()[0]
@@ -180,6 +180,27 @@ def draw_text(text, x, y, foreground=(255, 255, 255), background=(0, 0, 0), surf
     surface.blit(text, (x + 5, y + 5))
 
 
+def create_button(text, func, surface, size=(80, 30), align=('right', 0.1)):
+    button = thorpy.Clickable(text)
+    painter = thorpy.painters.optionnal.human.Human(size=size,
+                                                    radius_ext=0.5,
+                                                    radius_int=0.4,
+                                                    border_color=(93, 46, 32),
+                                                    color=(255, 220, 130))
+    button.set_painter(painter)
+    button.finish()
+    button.set_font_color_hover((93, 46, 32))
+    button.user_func = func
+    button.surface = surface
+    if align[0] == 'right':
+        x = WIDTH * 0.75
+    else:
+        x = WIDTH * 0.25
+    button.set_center((x, HEIGHT * align[1] + size[1] // 2))
+
+    return button
+
+
 class NPC(pygame.sprite.Sprite):
     def __init__(self, npc_number, npc_type, pos_x, pos_y, city):
         super().__init__(all_sprites, Npc_group)
@@ -187,7 +208,7 @@ class NPC(pygame.sprite.Sprite):
         self.pos_x, self.pos_y = pos_x, pos_y
         self.npc_type = npc_type
         self.city = city
-        self.image = load_image(f'npc\\npc{npc_number}.png')
+        self.image = load_image(f'npc/npc{npc_number}.png')
         self.rect = self.image.get_rect().move(
             tile_width * pos_x + (50 - self.image.get_width()) // 2,
             tile_height * pos_y + (50 - self.image.get_height()) // 2)
@@ -211,16 +232,15 @@ class Merchant(NPC):
         text_x = (WIDTH - text.get_width()) // 2
         text_y = HEIGHT * 0.1
         screen2.blit(text, (text_x, text_y))
-        btn_open = thorpy.make_button("Магазин", func=self.open_shop)
-        btn_open.surface = screen2
-        btn_open.set_topleft((WIDTH * 0.2, HEIGHT * 0.4))
+
+        btn_open = create_button('Магазин', self.open_shop, screen2, align=('left', 0.4))
         btn_open.blit()
         btn_open.update()
-        btn_quit = thorpy.make_button("Пока", func=self.finish_dialog)
-        btn_quit.surface = screen2
-        btn_quit.set_topleft((WIDTH * 0.8, HEIGHT * 0.4))
+
+        btn_quit = create_button("Пока", self.finish_dialog, screen2, align=('right', 0.4))
         btn_quit.blit()
         btn_quit.update()
+
         screen.blit(screen2, (0, 0))
         while self.flag:
             for event in pygame.event.get():
@@ -228,8 +248,8 @@ class Merchant(NPC):
                     terminate()
                 btn_open.react(event)
                 btn_quit.react(event)
+                screen.blit(screen2, (0, 0))
             pygame.display.flip()
-            screen.blit(screen2, (0, 0))
             clock.tick(FPS)
 
     def open_shop(self):
@@ -237,22 +257,29 @@ class Merchant(NPC):
         screen2.fill((250, 230, 180))
         elements = []
         inserters = []
-        with open(f"data\\{self.city}\\2_shop.csv", mode='rt', encoding='utf-8') as csvfile:
+        with open(f"data/{self.city}/2_shop.csv", mode='rt', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile, delimiter=';', quotechar='"')
-            for i, line in enumerate(reader):
-                text1 = thorpy.OneLineText(line[0].ljust(20, ' ')+line[1])
+            line = ["Название:", "количество:", "стоимость:", "  купить:"]
+            text = thorpy.OneLineText(''.join(map(lambda x: x.ljust(12, ' '), line)))
+            text.set_font('consolas')
+            box = thorpy.Box([text])
+            box.set_size((WIDTH * 0.75, 40))
+            box.set_main_color((255, 220, 130, 120))
+            elements.append(box)
+            for i, line in enumerate(reader, start=1):
+                text1 = thorpy.OneLineText(''.join(map(lambda x: x.ljust(12, ' '), line)))
                 text1.set_font('consolas')
                 inserter = thorpy.Inserter(value="0")
                 box = thorpy.Box([text1, inserter])
                 box.set_size((WIDTH * 0.75, 40))
+                box.set_main_color((250, 230, 180, 120))
                 thorpy.store(box, mode="h")
                 elements.append(box)
                 inserters.append(inserter)
 
         central_box = thorpy.Box(elements=elements)
-        ''''''
-        central_box.set_main_color((255, 220, 130, 120))
         central_box.set_size((WIDTH * 0.8, HEIGHT * 0.8))
+        central_box.set_main_color((255, 220, 130, 120))
         central_box.set_topleft((50, 50))
         central_box.add_lift()
         menu = thorpy.Menu(central_box)
@@ -261,15 +288,13 @@ class Merchant(NPC):
         central_box.blit()
         central_box.update()
 
-        btn_buy = thorpy.make_button("Совершить покупку", func=self.finish_dialog)
-        btn_buy.surface = screen2
-        btn_buy.set_topleft((WIDTH * 0.1, HEIGHT * 0.9))
+        btn_buy = create_button("Совершить покупку", self.finish_dialog,
+                                screen2, (150, 30), ('left', 0.9))
         btn_buy.blit()
         btn_buy.update()
 
-        btn_quit = thorpy.make_button("Отменить покупку", func=self.finish_dialog)
-        btn_quit.surface = screen2
-        btn_quit.set_topleft((WIDTH * 0.7, HEIGHT * 0.9))
+        btn_quit = create_button("Отменить покупку", self.finish_dialog,
+                                 screen2, (150, 30), ('right', 0.9))
         btn_quit.blit()
         btn_quit.update()
 
@@ -312,11 +337,11 @@ def enter_city(city_name):
     global Npc_group
     Npc_group = pygame.sprite.Group()
 
-    tile_images['wall'] = load_image('icons\\house.png')
-    tile_images['empty'] = load_image('icons\\road.png')
+    tile_images['wall'] = load_image('icons/house.png')
+    tile_images['empty'] = load_image('icons/road.png')
 
     global player, level_x, level_y
-    level = load_level(city_name + '\\city.txt')
+    level = load_level(city_name + '/city.txt')
     player, level_x, level_y = generate_level(level, city_name)
     PLAYER_MOVE_EVENT = pygame.USEREVENT + 1
     move = (0, 0)
@@ -382,9 +407,9 @@ camera = Camera()
 
 tile_width = tile_height = 50
 tile_images = {
-    'wall': load_image('icons\\house.png'),
-    'empty': load_image('icons\\road.png')
+    'wall': load_image('icons/house.png'),
+    'empty': load_image('icons/road.png')
 }
-player_image = load_image('icons\\player.png')
+player_image = load_image('icons/player.png')
 
 enter_city("city1")
