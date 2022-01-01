@@ -54,7 +54,26 @@ def start_screen():
         clock.tick(FPS)
 
 
+def load_items():
+    global current_city, money
+    with open(f'data/{current_player}.txt', mode='rt', encoding='utf-8') as file:
+        current_city = file.readline().strip('\n')
+        money = int(file.readline().strip('\n'))
+
+
+def save_items():
+    global money
+    with open('data/inventory.csv', mode='wt', encoding='utf8', newline='') as csvfile:
+        writer = csv.writer(csvfile, delimiter=';', quotechar='"')
+        for line in inventory:
+            writer.writerow(line)
+    with open(f'data/{current_player}.txt', mode='wt', encoding='utf-8') as file:
+        file.write(current_city + '\n')
+        file.write(str(money))
+
+
 def terminate():
+    save_items()
     pygame.quit()
     sys.exit()
 
@@ -256,7 +275,8 @@ class Merchant(NPC):
         screen2 = pygame.Surface((WIDTH, HEIGHT))
         screen2.fill((250, 230, 180))
         elements = []
-        inserters = []
+        self.inserters = []
+        self.shop = []
         with open(f"data/{self.city}/2_shop.csv", mode='rt', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile, delimiter=';', quotechar='"')
             line = ["Название:", "количество:", "стоимость:", "  купить:"]
@@ -267,6 +287,7 @@ class Merchant(NPC):
             box.set_main_color((255, 220, 130, 120))
             elements.append(box)
             for i, line in enumerate(reader, start=1):
+                self.shop.append(line)
                 text1 = thorpy.OneLineText(''.join(map(lambda x: x.ljust(12, ' '), line)))
                 text1.set_font('consolas')
                 inserter = thorpy.Inserter(value="0")
@@ -275,10 +296,10 @@ class Merchant(NPC):
                 box.set_main_color((250, 230, 180, 120))
                 thorpy.store(box, mode="h")
                 elements.append(box)
-                inserters.append(inserter)
+                self.inserters.append(inserter)
 
         central_box = thorpy.Box(elements=elements)
-        central_box.set_size((WIDTH * 0.8, HEIGHT * 0.8))
+        central_box.set_size((WIDTH * 0.8, HEIGHT * 0.7))
         central_box.set_main_color((255, 220, 130, 120))
         central_box.set_topleft((50, 50))
         central_box.add_lift()
@@ -288,7 +309,7 @@ class Merchant(NPC):
         central_box.blit()
         central_box.update()
 
-        btn_buy = create_button("Совершить покупку", self.finish_dialog,
+        btn_buy = create_button("Совершить покупку", self.purchase_items,
                                 screen2, (150, 30), ('left', 0.9))
         btn_buy.blit()
         btn_buy.update()
@@ -309,6 +330,27 @@ class Merchant(NPC):
             pygame.display.flip()
             screen.blit(screen2, (0, 0))
             clock.tick(FPS)
+
+    def purchase_items(self):
+        purchase = []
+        total = 0
+        try:
+            for txt_box, line in zip(self.inserters, self.shop):
+                amount = int(txt_box.get_value())
+                if amount < 0:
+                    raise ValueError
+                if amount > 0:
+                    purchase.append(line + [amount])
+                    total += int(line[-1] * amount)
+            global money
+            if total > money:
+                raise ValueError
+            money -= total
+            inventory.extend(purchase)
+        except ValueError:
+            return  # Добавить MessageBox
+
+        self.flag = False
 
     def finish_dialog(self):
         self.flag = False
@@ -396,7 +438,13 @@ def enter_city(city_name):
         clock.tick(FPS)
 
 
+# Загрузка файлов игры
+current_player = 'player1'
+money = 0
+current_city = 'city1'
+inventory = []
 start_screen()
+load_items()
 
 # группы спрайтов
 all_sprites = pygame.sprite.Group()
@@ -411,5 +459,4 @@ tile_images = {
     'empty': load_image('icons/road.png')
 }
 player_image = load_image('icons/player.png')
-
-enter_city("city1")
+enter_city(current_city)
