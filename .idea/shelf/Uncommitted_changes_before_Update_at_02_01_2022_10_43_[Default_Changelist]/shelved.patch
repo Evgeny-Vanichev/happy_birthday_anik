@@ -1,0 +1,442 @@
+Index: data/map.txt
+===================================================================
+--- data/map.txt	(revision 6dce42f898c3aeb97d318c30237b30af96437146)
++++ data/map.txt	(revision 6dce42f898c3aeb97d318c30237b30af96437146)
+@@ -1,20 +0,0 @@
+-....................
+-....................
+-....................
+-....................
+-..x.................
+-......@.............
+-....................
+-....................
+-....................
+-....................
+-....................
+-....................
+-....................
+-..............o.....
+-....................
+-....................
+-....................
+-....................
+-....................
+-....................
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"BranchesTreeState\">\r\n    <expand>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"REMOTE_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"GROUP_NODE:origin\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </expand>\r\n    <select>\r\n      <path>\r\n        <item name=\"ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"LOCAL_ROOT\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n        <item name=\"BRANCH:Chegodaeva-main\" type=\"e8cecc67:BranchNodeDescriptor\" />\r\n      </path>\r\n    </select>\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9bd924b8-0d6b-485c-ac08-3e6d99d05893\" name=\"Default Changelist\" comment=\"added update() function (checks if sprites collide)\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Python Script\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"Vanichev-main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"22Yh8beO1qVhOedFrnEZHp2Kpjr\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../pygame\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9bd924b8-0d6b-485c-ac08-3e6d99d05893\" name=\"Default Changelist\" comment=\"\" />\r\n      <created>1640020271124</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1640020271124</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"added start_screen() function\">\r\n      <created>1640021997456</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1640021997456</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added file about Taisia's branch\">\r\n      <created>1640022178725</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1640022178725</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"added sea_travel file&#10;shows main screen of the game\">\r\n      <created>1640022266455</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1640022266455</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"added data directory (contains images)\">\r\n      <created>1640095641379</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1640095641379</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"added update() function (checks if sprites collide)\">\r\n      <created>1640284052163</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1640284052163</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"6\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"Chegodaeva-main\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"added start_screen() function\" />\r\n    <MESSAGE value=\"added file about Taisia's branch\" />\r\n    <MESSAGE value=\"added sea_travel file&#10;shows main screen of the game\" />\r\n    <MESSAGE value=\"added data directory (contains images)\" />\r\n    <MESSAGE value=\"added update() function (checks if sprites collide)\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"added update() function (checks if sprites collide)\" />\r\n  </component>\r\n  <component name=\"WindowStateProjectService\">\r\n    <state x=\"463\" y=\"119\" key=\"FileChooserDialogImpl\" timestamp=\"1640276271248\">\r\n      <screen x=\"0\" y=\"0\" width=\"1366\" height=\"728\" />\r\n    </state>\r\n    <state x=\"463\" y=\"119\" key=\"FileChooserDialogImpl/0.0.1366.728@0.0.1366.728\" timestamp=\"1640276271248\" />\r\n    <state x=\"275\" y=\"97\" key=\"Vcs.Push.Dialog.v2\" timestamp=\"1640284053982\">\r\n      <screen x=\"0\" y=\"0\" width=\"1366\" height=\"728\" />\r\n    </state>\r\n    <state x=\"275\" y=\"97\" key=\"Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728\" timestamp=\"1640284053982\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision 6dce42f898c3aeb97d318c30237b30af96437146)
++++ .idea/workspace.xml	(date 1640864487275)
+@@ -25,81 +25,308 @@
+     </select>
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9bd924b8-0d6b-485c-ac08-3e6d99d05893" name="Default Changelist" comment="added update() function (checks if sprites collide)" />
++    <list default="true" id="564f738c-afea-4285-9ec2-01ae3bfa9029" name="Default Changelist" comment="nothing important changed">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Python Script" />
+-      </list>
+-    </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+       <map>
+-        <entry key="$PROJECT_DIR$" value="Vanichev-main" />
++        <entry key="$PROJECT_DIR$" value="main" />
+       </map>
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++    <option name="UPDATE_TYPE" value="REBASE" />
+   </component>
+-  <component name="ProjectId" id="22Yh8beO1qVhOedFrnEZHp2Kpjr" />
++  <component name="ProjectId" id="22jc1ar4x75q2XneTRnP3PS7JHV" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+   <component name="PropertiesComponent">
+     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../pygame" />
++    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Crypto" />
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+-      <changelist id="9bd924b8-0d6b-485c-ac08-3e6d99d05893" name="Default Changelist" comment="" />
+-      <created>1640020271124</created>
++      <changelist id="564f738c-afea-4285-9ec2-01ae3bfa9029" name="Default Changelist" comment="" />
++      <created>1640354223053</created>
+       <option name="number" value="Default" />
+       <option name="presentableId" value="Default" />
+-      <updated>1640020271124</updated>
++      <updated>1640354223053</updated>
+     </task>
+-    <task id="LOCAL-00001" summary="added start_screen() function">
+-      <created>1640021997456</created>
++    <task id="LOCAL-00001" summary="nothing changed...">
++      <created>1640357537533</created>
+       <option name="number" value="00001" />
+       <option name="presentableId" value="LOCAL-00001" />
+       <option name="project" value="LOCAL" />
+-      <updated>1640021997456</updated>
++      <updated>1640357537533</updated>
+     </task>
+-    <task id="LOCAL-00002" summary="added file about Taisia's branch">
+-      <created>1640022178725</created>
++    <task id="LOCAL-00002" summary="added level task (&quot;Pirate test&quot;)">
++      <created>1640357644679</created>
+       <option name="number" value="00002" />
+       <option name="presentableId" value="LOCAL-00002" />
+       <option name="project" value="LOCAL" />
+-      <updated>1640022178725</updated>
++      <updated>1640357644679</updated>
+     </task>
+-    <task id="LOCAL-00003" summary="added sea_travel file&#10;shows main screen of the game">
+-      <created>1640022266455</created>
++    <task id="LOCAL-00003" summary="added PyQT registration window&#10;it is commented out but WORKS!">
++      <created>1640357747805</created>
+       <option name="number" value="00003" />
+       <option name="presentableId" value="LOCAL-00003" />
+       <option name="project" value="LOCAL" />
+-      <updated>1640022266455</updated>
++      <updated>1640357747805</updated>
+     </task>
+-    <task id="LOCAL-00004" summary="added data directory (contains images)">
+-      <created>1640095641379</created>
++    <task id="LOCAL-00004" summary="added PyQT registration window">
++      <created>1640357825229</created>
+       <option name="number" value="00004" />
+       <option name="presentableId" value="LOCAL-00004" />
+       <option name="project" value="LOCAL" />
+-      <updated>1640095641379</updated>
++      <updated>1640357825229</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="added update() function (checks if sprites collide)">
+-      <created>1640284052163</created>
++    <task id="LOCAL-00005" summary="added database with information about users">
++      <created>1640357861667</created>
+       <option name="number" value="00005" />
+       <option name="presentableId" value="LOCAL-00005" />
+       <option name="project" value="LOCAL" />
+-      <updated>1640284052163</updated>
++      <updated>1640357861667</updated>
++    </task>
++    <task id="LOCAL-00006" summary="added UI file (.ui file is converted to .py file)">
++      <created>1640357918328</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1640357918328</updated>
++    </task>
++    <task id="LOCAL-00007" summary="added password check&#10;and if user is logged in">
++      <created>1640359962857</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1640359962857</updated>
++    </task>
++    <task id="LOCAL-00008" summary="added 2 tables">
++      <created>1640359999634</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1640359999634</updated>
++    </task>
++    <task id="LOCAL-00009" summary="added opening of login window">
++      <created>1640360060048</created>
++      <option name="number" value="00009" />
++      <option name="presentableId" value="LOCAL-00009" />
++      <option name="project" value="LOCAL" />
++      <updated>1640360060048</updated>
++    </task>
++    <task id="LOCAL-00010" summary="changed position on screen">
++      <created>1640360647144</created>
++      <option name="number" value="00010" />
++      <option name="presentableId" value="LOCAL-00010" />
++      <option name="project" value="LOCAL" />
++      <updated>1640360647144</updated>
++    </task>
++    <task id="LOCAL-00011" summary="&quot;Pirate test&quot; window closes without errors">
++      <created>1640360964364</created>
++      <option name="number" value="00011" />
++      <option name="presentableId" value="LOCAL-00011" />
++      <option name="project" value="LOCAL" />
++      <updated>1640360964364</updated>
++    </task>
++    <task id="LOCAL-00012" summary="&quot;Pirate test&quot; window closes with some errors&#10;I tried to add questions window :(">
++      <created>1640443636193</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1640443636193</updated>
++    </task>
++    <task id="LOCAL-00013" summary="changed coordinates for &quot;pirate test&quot; and island">
++      <created>1640443741956</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1640443741956</updated>
++    </task>
++    <task id="LOCAL-00014" summary="added new map and ship icon">
++      <created>1640443822338</created>
++      <option name="number" value="00014" />
++      <option name="presentableId" value="LOCAL-00014" />
++      <option name="project" value="LOCAL" />
++      <updated>1640443822338</updated>
++    </task>
++    <task id="LOCAL-00015" summary="added &quot;questions for pirate test&quot; window">
++      <created>1640443923272</created>
++      <option name="number" value="00015" />
++      <option name="presentableId" value="LOCAL-00015" />
++      <option name="project" value="LOCAL" />
++      <updated>1640443923272</updated>
++    </task>
++    <task id="LOCAL-00016" summary="added .ui file for pirate_test.py">
++      <created>1640443952564</created>
++      <option name="number" value="00016" />
++      <option name="presentableId" value="LOCAL-00016" />
++      <option name="project" value="LOCAL" />
++      <updated>1640443952564</updated>
++    </task>
++    <task id="LOCAL-00017" summary="added dictionary with questions for pirate test">
++      <created>1640443985456</created>
++      <option name="number" value="00017" />
++      <option name="presentableId" value="LOCAL-00017" />
++      <option name="project" value="LOCAL" />
++      <updated>1640443985456</updated>
++    </task>
++    <task id="LOCAL-00018" summary="added &quot;pirate flag&quot; icon">
++      <created>1640444018454</created>
++      <option name="number" value="00018" />
++      <option name="presentableId" value="LOCAL-00018" />
++      <option name="project" value="LOCAL" />
++      <updated>1640444018454</updated>
++    </task>
++    <task id="LOCAL-00019" summary="improved functionality&#10;code view is more understandable">
++      <created>1640599069029</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599069029</updated>
++    </task>
++    <task id="LOCAL-00020" summary="registration window works without mistakes">
++      <created>1640599161914</created>
++      <option name="number" value="00020" />
++      <option name="presentableId" value="LOCAL-00020" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599161914</updated>
++    </task>
++    <task id="LOCAL-00021" summary="test works without mistakes&#10;need to improve radioButtons and add &quot;game over&quot; window">
++      <created>1640599240234</created>
++      <option name="number" value="00021" />
++      <option name="presentableId" value="LOCAL-00021" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599240234</updated>
++    </task>
++    <task id="LOCAL-00022" summary="window opens without mistakes">
++      <created>1640599308575</created>
++      <option name="number" value="00022" />
++      <option name="presentableId" value="LOCAL-00022" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599308575</updated>
++    </task>
++    <task id="LOCAL-00023" summary="improved code &#10;everything works">
++      <created>1640599352661</created>
++      <option name="number" value="00023" />
++      <option name="presentableId" value="LOCAL-00023" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599352661</updated>
++    </task>
++    <task id="LOCAL-00024" summary="registration window opens without &quot;bugs&quot;&#10;game opens without double-click">
++      <created>1640599433872</created>
++      <option name="number" value="00024" />
++      <option name="presentableId" value="LOCAL-00024" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599433872</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00025" summary="added main.py file&#10;starts the game">
++      <created>1640599539272</created>
++      <option name="number" value="00025" />
++      <option name="presentableId" value="LOCAL-00025" />
++      <option name="project" value="LOCAL" />
++      <updated>1640599539272</updated>
++    </task>
++    <task id="LOCAL-00026" summary="after wrong answer program opens window &quot;game over&quot;">
++      <created>1640601831031</created>
++      <option name="number" value="00026" />
++      <option name="presentableId" value="LOCAL-00026" />
++      <option name="project" value="LOCAL" />
++      <updated>1640601831031</updated>
++    </task>
++    <task id="LOCAL-00027" summary="added &quot;game over&quot; window">
++      <created>1640601945831</created>
++      <option name="number" value="00027" />
++      <option name="presentableId" value="LOCAL-00027" />
++      <option name="project" value="LOCAL" />
++      <updated>1640601945831</updated>
++    </task>
++    <task id="LOCAL-00028" summary="added global variables">
++      <created>1640602000872</created>
++      <option name="number" value="00028" />
++      <option name="presentableId" value="LOCAL-00028" />
++      <option name="project" value="LOCAL" />
++      <updated>1640602000872</updated>
++    </task>
++    <task id="LOCAL-00029" summary="window closes when game over">
++      <created>1640602069771</created>
++      <option name="number" value="00029" />
++      <option name="presentableId" value="LOCAL-00029" />
++      <option name="project" value="LOCAL" />
++      <updated>1640602069771</updated>
++    </task>
++    <task id="LOCAL-00030" summary="improved interface">
++      <created>1640603554135</created>
++      <option name="number" value="00030" />
++      <option name="presentableId" value="LOCAL-00030" />
++      <option name="project" value="LOCAL" />
++      <updated>1640603554135</updated>
++    </task>
++    <task id="LOCAL-00031" summary="improved labyrinth">
++      <created>1640848613961</created>
++      <option name="number" value="00031" />
++      <option name="presentableId" value="LOCAL-00031" />
++      <option name="project" value="LOCAL" />
++      <updated>1640848613961</updated>
++    </task>
++    <task id="LOCAL-00032" summary="improved labyrinth &#10;if a person passes level, &quot;you win&quot; window opens">
++      <created>1640850820213</created>
++      <option name="number" value="00032" />
++      <option name="presentableId" value="LOCAL-00032" />
++      <option name="project" value="LOCAL" />
++      <updated>1640850820213</updated>
++    </task>
++    <task id="LOCAL-00033" summary="не доработаны вызовы функций &#10;(это надо обсудить с тиммейтом)">
++      <created>1640850925688</created>
++      <option name="number" value="00033" />
++      <option name="presentableId" value="LOCAL-00033" />
++      <option name="project" value="LOCAL" />
++      <updated>1640850925688</updated>
++    </task>
++    <task id="LOCAL-00034" summary="&quot;you win&quot; window">
++      <created>1640851016091</created>
++      <option name="number" value="00034" />
++      <option name="presentableId" value="LOCAL-00034" />
++      <option name="project" value="LOCAL" />
++      <updated>1640851016091</updated>
++    </task>
++    <task id="LOCAL-00035" summary="&quot;level completed&quot; window">
++      <created>1640851035043</created>
++      <option name="number" value="00035" />
++      <option name="presentableId" value="LOCAL-00035" />
++      <option name="project" value="LOCAL" />
++      <updated>1640851035043</updated>
++    </task>
++    <task id="LOCAL-00036" summary="works without mistakes">
++      <created>1640851086594</created>
++      <option name="number" value="00036" />
++      <option name="presentableId" value="LOCAL-00036" />
++      <option name="project" value="LOCAL" />
++      <updated>1640851086594</updated>
++    </task>
++    <task id="LOCAL-00037" summary="nothing important changed">
++      <created>1640851172036</created>
++      <option name="number" value="00037" />
++      <option name="presentableId" value="LOCAL-00037" />
++      <option name="project" value="LOCAL" />
++      <updated>1640851172036</updated>
++    </task>
++    <task id="LOCAL-00038" summary="nothing important changed">
++      <created>1640851206770</created>
++      <option name="number" value="00038" />
++      <option name="presentableId" value="LOCAL-00038" />
++      <option name="project" value="LOCAL" />
++      <updated>1640851206770</updated>
++    </task>
++    <option name="localTasksCounter" value="39" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -127,21 +354,56 @@
+     <option name="oldMeFiltersMigrated" value="true" />
+   </component>
+   <component name="VcsManagerConfiguration">
+-    <MESSAGE value="added start_screen() function" />
+-    <MESSAGE value="added file about Taisia's branch" />
+-    <MESSAGE value="added sea_travel file&#10;shows main screen of the game" />
+-    <MESSAGE value="added data directory (contains images)" />
+-    <MESSAGE value="added update() function (checks if sprites collide)" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added update() function (checks if sprites collide)" />
++    <MESSAGE value="changed coordinates for &quot;pirate test&quot; and island" />
++    <MESSAGE value="added new map and ship icon" />
++    <MESSAGE value="added &quot;questions for pirate test&quot; window" />
++    <MESSAGE value="added .ui file for pirate_test.py" />
++    <MESSAGE value="added dictionary with questions for pirate test" />
++    <MESSAGE value="added &quot;pirate flag&quot; icon" />
++    <MESSAGE value="improved functionality&#10;code view is more understandable" />
++    <MESSAGE value="registration window works without mistakes" />
++    <MESSAGE value="test works without mistakes&#10;need to improve radioButtons and add &quot;game over&quot; window" />
++    <MESSAGE value="window opens without mistakes" />
++    <MESSAGE value="improved code &#10;everything works" />
++    <MESSAGE value="registration window opens without &quot;bugs&quot;&#10;game opens without double-click" />
++    <MESSAGE value="added main.py file&#10;starts the game" />
++    <MESSAGE value="after wrong answer program opens window &quot;game over&quot;" />
++    <MESSAGE value="added &quot;game over&quot; window" />
++    <MESSAGE value="added global variables" />
++    <MESSAGE value="window closes when game over" />
++    <MESSAGE value="improved interface" />
++    <MESSAGE value="improved labyrinth" />
++    <MESSAGE value="improved labyrinth &#10;if a person passes level, &quot;you win&quot; window opens" />
++    <MESSAGE value="не доработаны вызовы функций &#10;(это надо обсудить с тиммейтом)" />
++    <MESSAGE value="&quot;you win&quot; window" />
++    <MESSAGE value="&quot;level completed&quot; window" />
++    <MESSAGE value="works without mistakes" />
++    <MESSAGE value="nothing important changed" />
++    <option name="LAST_COMMIT_MESSAGE" value="nothing important changed" />
+   </component>
+   <component name="WindowStateProjectService">
+-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1640276271248">
++    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1640864485620">
++      <screen x="0" y="0" width="1366" height="728" />
++    </state>
++    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1640864485620" />
++    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1640851212186">
+       <screen x="0" y="0" width="1366" height="728" />
+     </state>
+-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1640276271248" />
+-    <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1640284053982">
++    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1640851212186" />
++    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1640850805617">
+       <screen x="0" y="0" width="1366" height="728" />
+     </state>
+-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1640284053982" />
++    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1640850805617" />
++  </component>
++  <component name="XDebuggerManager">
++    <breakpoint-manager>
++      <breakpoints>
++        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
++          <url>file://$PROJECT_DIR$/start_screen.py</url>
++          <line>54</line>
++          <option name="timeStamp" value="1" />
++        </line-breakpoint>
++      </breakpoints>
++    </breakpoint-manager>
+   </component>
+ </project>
+\ No newline at end of file
