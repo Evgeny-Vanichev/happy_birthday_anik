@@ -163,15 +163,15 @@ def draw_text(text, x, y, foreground=(255, 255, 255), background=(0, 0, 0), surf
 
 
 def create_button(text, func, surface, size=(80, 30), align=('right', 0.1)):
-    button = thorpy.Clickable(text)
-    painter = thorpy.painters.optionnal.human.Human(size=size,
-                                                    radius_ext=0.5,
-                                                    radius_int=0.4,
-                                                    border_color=(93, 46, 32),
-                                                    color=(255, 220, 130))
-    button.set_painter(painter)
-    button.finish()
-    button.set_font_color_hover((93, 46, 32))
+    button = thorpy.Button(text)
+    # painter = thorpy.painters.optionnal.human.Human(size=size,
+    #                                                 radius_ext=0.5,
+    #                                                 radius_int=0.4,
+    #                                                 border_color=(93, 46, 32),
+    #                                                 color=(255, 220, 130))
+    # button.set_painter(painter)
+    # button.finish()
+    # button.set_font_color_hover((93, 46, 32))
     button.user_func = func
     button.surface = surface
     if align[0] == 'right':
@@ -243,45 +243,45 @@ class Merchant(NPC):
         with open(f"data/{self.city}/2_shop.csv", mode='rt', encoding='utf-8') as csvfile:
             reader = csv.reader(csvfile, delimiter=';', quotechar='"')
             line = ["Название:", "количество:", "стоимость:", "  купить:"]
-            text = thorpy.OneLineText(''.join(map(lambda x: x.ljust(12, ' '), line)))
-            text.set_font('consolas')
+            text = thorpy.Text(''.join(map(lambda x: x.ljust(12, ' '), line)))
+            text.set_font_name('consolas')
             box = thorpy.Box([text])
             box.set_size((WIDTH * 0.75, 40))
-            box.set_main_color((255, 220, 130, 120))
+            box.set_bck_color((255, 220, 130, 120))
             elements.append(box)
             for i, line in enumerate(reader, start=1):
                 self.shop.append(line)
-                text1 = thorpy.OneLineText(''.join(map(lambda x: x.ljust(12, ' '), line)))
-                text1.set_font('consolas')
-                inserter = thorpy.Inserter(value="0")
+                text1 = thorpy.Text(''.join(map(lambda x: x.ljust(12, ' '), line)))
+                text1.set_font_name('consolas')
+                inserter = thorpy.TextInput(value="0")
                 box = thorpy.Box([text1, inserter])
                 box.set_size((WIDTH * 0.75, 40))
-                box.set_main_color((250, 230, 180, 120))
-                thorpy.store(box, mode="h")
+                box.set_bck_color((250, 230, 180, 120))
+                # thorpy.store(box, mode="h")
                 elements.append(box)
                 self.inserters.append(inserter)
 
         '''by Taisia'''
 
         coin_image = thorpy.Image(path="data/icons/coin.png")
-        coin_image.set_topleft((5, 5))
-        coin_image.blit()
+        coin_image.set_topleft(5, 5)
+        # coin_image.blit()
         coin_image.update()
 
         self.con_taisia_db = sqlite3.connect('login_db.db')  # !!! ТУТ НУЖНО УКАЗАТЬ СВОЙ ПУТЬ ДО login_db.db
         self.cur_taisia_db = self.con_taisia_db.cursor()
         self.result = self.cur_taisia_db.execute("SELECT money FROM users WHERE name='111'").fetchone()[0]
-        self.money_left = thorpy.make_text(str(self.result), font_size=10, font_color=(0, 0, 0))
-        self.money_left.set_topleft((25, 5))
-        self.money_left.blit()
+        self.money_left = thorpy.Text(str(self.result), font_size=10, font_color=(0, 0, 0))
+        self.money_left.set_topleft(25, 5)
+        # self.money_left.blit()
         self.money_left.update()
 
         '''end :)'''
 
         central_box = thorpy.Box(elements=elements)
         central_box.set_size((WIDTH * 0.8, HEIGHT * 0.7))
-        central_box.set_main_color((255, 220, 130, 120))
-        central_box.set_topleft((50, 50))
+        central_box.set_bck_color((255, 220, 130, 120))
+        central_box.set_topleft(50, 50)
         central_box.add_lift()
         menu = thorpy.Menu(central_box)
         for element in menu.get_population():
@@ -473,3 +473,5 @@ def town():
     }
     player_image = load_image('icons/player.png')
     enter_city(current_city)
+
+town()
