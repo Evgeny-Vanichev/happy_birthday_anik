@@ -30,17 +30,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121140cf-8342-41ec-85bc-62be0678e53c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Zhenya/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Zhenya/from_scratch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Zhenya/tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Sea-Dog-PyGame-.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sea-Dog-PyGame-.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2022_10_43_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_02_01_2022_10_43__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_12_2021_13_44__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_27_12_2021_14_12__Default_Changelist_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Zhenya/data/scipt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Zhenya/scipt_reader.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Zhenya/sprites.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/town.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/town.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/game_over.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/island1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/level_completed.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/login.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/login_db.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/login_ui.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/pirate_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/pirate_test_window.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/questions.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/sea_travel_level_1.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/sea_travel_level_2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/start_screen.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Taisia/win_game.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/2_shop.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/3_shop.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/4_shop.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/city.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/city1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/city1/city1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/price_list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/fon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/gameover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/icons/box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/icons/coin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/level1/level1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/dialog.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/merchant.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/quest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/from_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/from_scratch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/main_Zhenya.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/background.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/big_player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/city1/2_shop.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/city1/3_shop.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/city1/4_shop.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/city1/city.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/city1/city1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/city1/price_list.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/fon.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/gameover.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/house.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/icons/box.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/icons/coin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/icons/house.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/icons/player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/icons/road.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/inventory.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/colors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/island_map.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/level1/level1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/dialog.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/merchant.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc.db" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/npc9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/npc/quest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pirate.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/pirate_flag.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/player.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/player1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/road.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sea_map_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sea_map_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/sea_tile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/ship.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,16 +137,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.from_scratch.executor": "Run",
-    "Python.math.executor": "Run",
-    "Python.town.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/rintaro/Downloads/game"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.from_scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.math.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scipt_reader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.town.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rintaro/Downloads/game&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.from_scratch">
     <configuration name="from_scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sea-Dog-PyGame-" />
@@ -125,6 +193,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="scipt_reader" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Sea-Dog-PyGame-" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Zhenya" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Zhenya/scipt_reader.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="town" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sea-Dog-PyGame-" />
       <option name="ENV_FILES" value="" />
@@ -150,6 +240,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.from_scratch" />
+        <item itemvalue="Python.scipt_reader" />
         <item itemvalue="Python.math" />
         <item itemvalue="Python.town" />
       </list>
