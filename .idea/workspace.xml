@@ -30,11 +30,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121140cf-8342-41ec-85bc-62be0678e53c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Zhenya/data/scipt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Zhenya/data/script" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/temp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/data/scipt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Zhenya/from_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/from_scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/sprites.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/sprites.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/scipt_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/scipt_reader.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Zhenya/step.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/step.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,18 +67,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.from_scratch.executor&quot;: &quot;Run&quot;,
-    &quot;Python.math.executor&quot;: &quot;Run&quot;,
-    &quot;Python.scipt_reader.executor&quot;: &quot;Run&quot;,
-    &quot;Python.town.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/rintaro/Downloads/game&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.from_scratch.executor": "Run",
+    "Python.math.executor": "Run",
+    "Python.scipt_reader.executor": "Run",
+    "Python.temp.executor": "Run",
+    "Python.temporary.executor": "Run",
+    "Python.town.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/rintaro/Downloads/game"
   }
-}</component>
-  <component name="RunManager" selected="Python.from_scratch">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\rintaro\Downloads\game\Zhenya\data" />
+      <recent name="C:\Users\rintaro\Downloads\game\Zhenya" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.temp">
     <configuration name="from_scratch" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sea-Dog-PyGame-" />
       <option name="ENV_FILES" value="" />
@@ -142,7 +153,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="town" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="temp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Sea-Dog-PyGame-" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -151,11 +162,33 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Zhenya" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Zhenya/town.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/temp.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="temporary" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Sea-Dog-PyGame-" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/temporary.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -166,10 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.temp" />
+        <item itemvalue="Python.temporary" />
         <item itemvalue="Python.from_scratch" />
         <item itemvalue="Python.scipt_reader" />
         <item itemvalue="Python.math" />
-        <item itemvalue="Python.town" />
       </list>
     </recent_temporary>
   </component>

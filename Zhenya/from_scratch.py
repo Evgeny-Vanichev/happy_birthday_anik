@@ -38,6 +38,8 @@ def create_npc(number, x, y, city):
         Object(number, x, y, city)
     elif npc_type == 'safe':
         Safe(number, x, y, city)
+    elif npc_type == 'text':
+        Text(number, x, y, city)
 
 
 class Tile(pygame.sprite.Sprite):
@@ -151,10 +153,9 @@ class NPC(pygame.sprite.Sprite):
             dialogue_state[0] = 0
 
         thorpy.init(screen, thorpy.theme_game1)
-
         NPC_line = thorpy.Text(self.get_line()[0], max_width=WIDTH * 0.7)
 
-        def set_new_npc_line(npc_line_label=NPC_line):
+        def set_new_npc_line():
             if self.interaction:
                 player.give(self.item)
                 self.update_line()
@@ -162,7 +163,7 @@ class NPC(pygame.sprite.Sprite):
 
             self.update_line()
             line, reaction = self.get_line()
-            npc_line_label.set_text(line, max_width=WIDTH * 0.7)
+            NPC_line.set_text(line, max_width=WIDTH * 0.7)
             btn_open.set_text(reaction)
 
         btn_open = new_button(self.get_line()[1], set_new_npc_line)
@@ -219,7 +220,9 @@ class Object(NPC):
         return self.yes_line
 
     def default_reaction(self):
-        return self.interact_line
+        if self.state == 'non':
+            return self.interact_line
+        return ""
 
     def intro_dialog(self):
         dialogue_state = [1]
@@ -298,15 +301,14 @@ class Safe(NPC):
 
         if self.state == 'non':
             def try_to_interact():
-                print(self.password, password_input.get_value())
                 if self.password == password_input.get_value():
-                    step(add=True)
                     self.state = 'yes'
                     self.image = load_image(f'npc\\npc{self.number}_yes.png')
                     player.give(self.non_to_yes)
                     exit_dialogue()
                 else:
                     object_line.set_text('Вероятно, пароль не тот...')
+
             password_input = thorpy.TextInput("Введите пароль...")
             btn_interact = new_button("Попробовать", try_to_interact)
             buttons = thorpy.Group([password_input, btn_interact, new_button("Вернусь потом", exit_dialogue)])
@@ -315,6 +317,40 @@ class Safe(NPC):
             buttons = thorpy.Group([btn_quit])
         buttons.sort_children('v')
         menu = thorpy.Box([object_line, buttons])
+        menu.sort_children('v')
+
+        menu.set_size((WIDTH * 0.7, HEIGHT * 0.6))
+        menu.set_center(WIDTH // 2, HEIGHT * 0.4)
+        menu.set_opacity_bck_color(OPACITY)
+        updater = menu.get_updater()
+
+        while dialogue_state[0]:
+            events = pygame.event.get()
+            mouse_rel = pygame.mouse.get_rel()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    terminate()
+            all_sprites.draw(screen)
+            updater.update(events=events,
+                           mouse_rel=mouse_rel)
+            pygame.display.flip()
+            clock.tick(FPS)
+
+
+class Text(NPC):
+    def intro_dialog(self):
+        dialogue_state = [1]
+
+        def exit_dialogue():
+            dialogue_state[0] = 0
+
+        thorpy.init(screen, thorpy.theme_game1)
+        lines = []
+        with open(f"{self.number}.txt", mode="rt") as file:
+            for next_line in file.readlines() + [""]:
+                lines.append(new_text(next_line.replace('\n', '')))
+        lines.append(new_button("Выход", exit_dialogue))
+        menu = thorpy.Box(lines)
         menu.sort_children('v')
 
         menu.set_size((WIDTH * 0.7, HEIGHT * 0.6))
@@ -352,6 +388,10 @@ class Camera:
             self.dx = -(target.rect.x + target.rect.w // 2 - WIDTH // 2)
         if 4 < target.pos_y < level_y - 4:
             self.dy = -(target.rect.y + target.rect.h // 2 - HEIGHT // 2)
+
+
+class ReadText:
+    ...
 
 
 def check_move(event: pygame.event):
@@ -402,14 +442,14 @@ def open_pause_menu():
     )):
         controls.append(new_button(txt, func))
 
-    pause_menu_elements = thorpy.Box(controls)
-    pause_menu_elements.sort_children('v')
+    pause_menu = thorpy.Box(controls)
+    pause_menu.sort_children('v')
 
-    pause_menu_elements.set_size((WIDTH * 0.7, HEIGHT * 0.6))
-    pause_menu_elements.set_center(WIDTH // 2, HEIGHT * 0.4)
+    pause_menu.set_size((WIDTH * 0.7, HEIGHT * 0.6))
+    pause_menu.set_center(WIDTH // 2, HEIGHT * 0.4)
 
-    pause_menu_elements.set_opacity_bck_color(OPACITY)
-    updater = pause_menu_elements.get_updater()
+    pause_menu.set_opacity_bck_color(OPACITY)
+    updater = pause_menu.get_updater()
 
     while paused[0]:
         events = pygame.event.get()

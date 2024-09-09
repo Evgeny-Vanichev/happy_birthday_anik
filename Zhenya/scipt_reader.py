@@ -16,7 +16,7 @@ def step(add=False, define=None):
 
 
 def yield_scipt_lines():
-    with open("data/scipt", mode="rt", encoding='utf-8') as scipt:
+    with open("data/scipt.txt", mode="rt", encoding='utf-8') as scipt:
         lines = scipt.readlines()
         n = len(lines)
         i = 0
