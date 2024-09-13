@@ -186,7 +186,7 @@ class NPC(pygame.sprite.Sprite):
         btn_open = new_button(self.get_line()[1], set_new_npc_line)
         buttons = thorpy.Group([btn_open, new_button("Пока", exit_dialogue)], mode='h')
 
-        menu = thorpy.Box([NPC_line, buttons])
+        menu = thorpy.Box([NPC_line, thorpy.Image(self.image), buttons])
         menu.sort_children('v')
         menu.set_max_text_width(WIDTH * 0.65, apply_to_children=True)
 
