@@ -30,23 +30,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121140cf-8342-41ec-85bc-62be0678e53c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/city1/city.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/city1/city.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc3_non.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc3_yes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/archive/npc9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/from_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/from_scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/step.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/step.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Ваничев.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Идея.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Техническое задание.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,21 +60,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.date_count.executor": "Run",
-    "Python.from_scratch.executor": "Run",
-    "Python.math.executor": "Run",
-    "Python.scipt_reader.executor": "Run",
-    "Python.temp.executor": "Run",
-    "Python.temporary.executor": "Run",
-    "Python.tools.executor": "Run",
-    "Python.town.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "adding__plot",
-    "last_opened_file_path": "C:/Users/rintaro/Downloads/game/Zhenya/data/npc"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.date_count.executor&quot;: &quot;Run&quot;,
+    &quot;Python.from_scratch.executor&quot;: &quot;Run&quot;,
+    &quot;Python.math.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scipt_reader.executor&quot;: &quot;Run&quot;,
+    &quot;Python.temp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.temporary.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tools.executor&quot;: &quot;Run&quot;,
+    &quot;Python.town.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;adding__plot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/rintaro/Downloads/game/Zhenya/data/npc&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\rintaro\Downloads\game\Zhenya\data\npc" />
