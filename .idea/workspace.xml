@@ -29,30 +29,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="121140cf-8342-41ec-85bc-62be0678e53c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Zhenya/data/city1/city.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Zhenya/data/icons/КЛЮЧ ОТ 437.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc_copy.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/icons/npc3_no.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/icons/КЛЮЧ ОТ ВОРОТ.png" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/icons/КЛЮЧ ОТ ВОРОТ.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc3_non.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc3_yes.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc5.png" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc8.png" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/npc/npc8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/npc/npc9.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/scipt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/scipt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/data/script" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/data/script" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/from_scratch.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/from_scratch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/scipt_reader.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/scipt_reader.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/step.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/step.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Zhenya/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/Zhenya/tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp.py" beforeDir="false" />
-    </list>
+    <list default="true" id="121140cf-8342-41ec-85bc-62be0678e53c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
