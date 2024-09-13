@@ -1,8 +1,8 @@
 def step(add=False, define=None):
     if define is not None:
         with open("step.txt", mode="wt") as f:
-            STEP = 1
-            f.write(f"{1}\n")
+            STEP = define
+            f.write(f"{STEP}\n")
     try:
         STEP = int(open("step.txt", mode="rt").readline())
     except FileNotFoundError:
@@ -22,10 +22,14 @@ def yield_scipt_lines():
         i = 0
         step(define=1)
         while i < n:
+            while i < n and lines[i][0] == "#":
+                i += 1
+            if i >= n:
+                break
             number, action, who, what = lines[i].split()
-            print(lines[i].split())
-            if step() < int(number):
-                yield []
+            # print(step(), lines[i].split())
+            while step() < int(number):
+                yield {}
             if action == 'ADD' and who.isdigit():
                 if what == 'LINE':
                     i += 3
@@ -44,6 +48,8 @@ def yield_scipt_lines():
                         'line': lines[i - 3],
                         'reaction': lines[i - 2]
                     }
+        while True:
+            yield {}
 
 
 if __name__ == '__main__':

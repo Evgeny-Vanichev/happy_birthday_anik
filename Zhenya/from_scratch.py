@@ -8,10 +8,17 @@ import sqlite3
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
 
+messages = dict()
+
+
+def send_message(text):
+    messages[text] = 255
+
 
 def generate_location(level, city):
     new_player, x, y = None, None, None
     player_x, player_y = None, None
+    NPC_indices = '123456789' + 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     for y in range(len(level)):
         for x in range(len(level[y])):
             Tile('empty', x, y)
@@ -19,8 +26,8 @@ def generate_location(level, city):
                 Tile('wall', x, y)
             elif level[y][x] == '@':
                 player_x, player_y = x, y
-            elif level[y][x] in '123456789':
-                create_npc(level[y][x], x, y, city)
+            elif level[y][x] in NPC_indices:
+                create_npc(str(NPC_indices.index(level[y][x]) + 1), x, y, city)
     new_player = Player(player_x, player_y)
     # вернем игрока, а также размер поля в клетках
     return new_player, x, y
@@ -94,12 +101,13 @@ class Player(pygame.sprite.Sprite):
             self.pos_y -= dy
 
     def give(self, item):
+        item = item.replace('\n', '')
         self.inventory.append(item)
         step(add=True)
+        global NEXT_UPDATE
+        NEXT_UPDATE = next(scipt)
 
-        global text_draw_alpha
-        text_draw_alpha = 255
-        pygame.time.set_timer(DRAW_TEXT_EVENT, DRAW_TEXT_DELAY)
+        send_message(f'Получено: {player.inventory[-1]}')
 
 
 class NPC(pygame.sprite.Sprite):
@@ -108,7 +116,10 @@ class NPC(pygame.sprite.Sprite):
 
         self.pos_x, self.pos_y = pos_x, pos_y
         self.city = city
-        self.image = load_image(f'npc\\npc{npc_number}.png')
+        try:
+            self.image = load_image(f'npc\\npc{npc_number}.png')
+        except:
+            self.image = load_image(f'npc\\npc1.png')
         self.number = npc_number
         self.rect = self.image.get_rect().move(
             tile_width * pos_x + (50 - self.image.get_width()) // 2,
@@ -116,6 +127,12 @@ class NPC(pygame.sprite.Sprite):
         self.current_line = ""
         self.current_reaction = ""
         self.interaction = False
+
+    def get_name(self):
+        con = sqlite3.connect("data/npc/npc.db")
+        return con.cursor().execute(
+            f"""SELECT real_meaning FROM functions
+                        WHERE id == {self.number}""").fetchone()[0]
 
     def default_line(self):
         return "С днём рождения!\n" + random.choice(WISHES)
@@ -135,15 +152,15 @@ class NPC(pygame.sprite.Sprite):
             if NEXT_UPDATE['what'] == 'item':
                 self.interaction = True
                 self.item = NEXT_UPDATE['item']
-            try:
-                NEXT_UPDATE = next(scipt)
-            except:
-                NEXT_UPDATE = {}
+            NEXT_UPDATE = next(scipt)
+
 
     def get_line(self):
         if self.current_line != "":
             return self.current_line, self.current_reaction
         self.update_line()
+        if self.current_line != "":
+            return self.current_line, self.current_reaction
         return self.default_line(), self.default_reaction()
 
     def intro_dialog(self):
@@ -198,8 +215,10 @@ class Object(NPC):
 
         self.state = 'non'
 
-        self.image = load_image(f'npc\\npc{npc_number}_non.png')
-
+        try:
+            self.image = load_image(f'npc\\npc{npc_number}_non.png')
+        except:
+            self.image = load_image(f'npc\\npc1_non.png')
         con = sqlite3.connect("data/npc/npc.db")
         self.non_line = con.cursor().execute(
             f"""SELECT default_line FROM functions
@@ -237,8 +256,15 @@ class Object(NPC):
             def try_to_interact():
                 if self.non_to_yes in player.inventory:
                     step(add=True)
+                    global NEXT_UPDATE
+                    NEXT_UPDATE = next(scipt)
+
                     self.state = 'yes'
-                    self.image = load_image(f'npc\\npc{self.number}_yes.png')
+                    try:
+                        self.image = load_image(f'npc\\npc{self.number}_yes.png')
+                    except:
+                        self.image = load_image(f'npc\\npc1_yes.png')
+                    send_message("Теперь тут можно пройти!")
                     exit_dialogue()
                 else:
                     object_line.set_text('Вероятно, мне не хватает:\n' + self.non_to_yes)
@@ -275,14 +301,19 @@ class Safe(NPC):
         super().__init__(npc_number, pos_x, pos_y, city)
 
         self.state = 'non'
-        self.image = load_image(f'npc\\npc{npc_number}_non.png')
-
+        try:
+            self.image = load_image(f'npc\\npc{npc_number}_non.png')
+        except:
+            self.image = load_image(f'npc\\npc3_non.png')
         con = sqlite3.connect("data/npc/npc.db")
         self.password = con.cursor().execute(
             f"""SELECT interact_line FROM functions
                     WHERE id == {self.number}""").fetchone()[0]
         self.non_to_yes = con.cursor().execute(
             f"""SELECT item FROM functions
+                    WHERE id == {self.number}""").fetchone()[0]
+        self.message_on_activation = con.cursor().execute(
+            f"""SELECT yes_line FROM functions
                     WHERE id == {self.number}""").fetchone()[0]
 
     def default_line(self):
@@ -303,13 +334,18 @@ class Safe(NPC):
             def try_to_interact():
                 if self.password == password_input.get_value():
                     self.state = 'yes'
-                    self.image = load_image(f'npc\\npc{self.number}_yes.png')
+                    try:
+                        self.image = load_image(f'npc\\npc{self.number}_yes.png')
+                    except:
+                        self.image = load_image(f'npc\\npc3_yes.png')
                     player.give(self.non_to_yes)
+                    send_message(self.message_on_activation)
                     exit_dialogue()
                 else:
                     object_line.set_text('Вероятно, пароль не тот...')
 
-            password_input = thorpy.TextInput("Введите пароль...")
+            password_input = thorpy.TextInput("")
+            password_input.set_size((WIDTH // 4, None))
             btn_interact = new_button("Попробовать", try_to_interact)
             buttons = thorpy.Group([password_input, btn_interact, new_button("Вернусь потом", exit_dialogue)])
         else:
@@ -346,15 +382,21 @@ class Text(NPC):
 
         thorpy.init(screen, thorpy.theme_game1)
         lines = []
-        with open(f"{self.number}.txt", mode="rt") as file:
-            for next_line in file.readlines() + [""]:
-                lines.append(new_text(next_line.replace('\n', '')))
-        lines.append(new_button("Выход", exit_dialogue))
-        menu = thorpy.Box(lines)
-        menu.sort_children('v')
 
-        menu.set_size((WIDTH * 0.7, HEIGHT * 0.6))
-        menu.set_center(WIDTH // 2, HEIGHT * 0.4)
+        fullname = os.path.join('data', "npc", f"npc{self.number}.txt")
+        # если файл не существует, то выходим
+        if not os.path.isfile(fullname):
+            fullname = '..\\Ваничев.txt'
+        with open(fullname, mode="rt", encoding="utf-8") as file:
+            for next_line in file.readlines() + [""]:
+                lines.append(new_text(next_line.replace('\n', ''), font_size=24))
+        lines.append(new_button("Выход", exit_dialogue))
+        menu = thorpy.Box(lines, scrollbar_if_needed=True, size_limit=(WIDTH, HEIGHT))
+        menu.sort_children('v', align="left")
+
+        menu.set_size((WIDTH, HEIGHT))
+
+        menu.set_center(WIDTH // 2, HEIGHT * 0.5)
         menu.set_opacity_bck_color(OPACITY)
         updater = menu.get_updater()
 
@@ -390,10 +432,6 @@ class Camera:
             self.dy = -(target.rect.y + target.rect.h // 2 - HEIGHT // 2)
 
 
-class ReadText:
-    ...
-
-
 def check_move(event: pygame.event):
     move = (0, 0)
     if event.key in [pygame.K_LEFT, pygame.K_a]:
@@ -421,8 +459,8 @@ def new_button(text, func):
     return button
 
 
-def new_text(text):
-    return thorpy.Text(text, font_size=32, max_width=WIDTH * 0.6)
+def new_text(text, font_size=32):
+    return thorpy.Text(text, font_size=font_size, max_width=WIDTH * 0.6)
 
 
 def open_pause_menu():
@@ -550,13 +588,12 @@ def open_inventory():
 
 
 def enter_city(city_name):
-    global text_draw_alpha
-    text_draw_alpha = 0
+    pygame.time.set_timer(DRAW_TEXT_EVENT, DRAW_TEXT_DELAY)
     tile_images['wall'] = load_image('icons/house.png')
     tile_images['empty'] = load_image('icons/road.png')
 
     global player, level_x, level_y
-    level = load_location(city_name + '/city1.txt')
+    level = load_location(city_name + '/city.txt')
     player, level_x, level_y = generate_location(level, city_name)
 
     move = (0, 0)
@@ -574,6 +611,7 @@ def enter_city(city_name):
                         if abs(sprite.pos_x - player.pos_x) <= 1 and abs(
                                 sprite.pos_y - player.pos_y) <= 1:
                             sprite.intro_dialog()
+                            break
                 else:
                     move = check_move(event)
             elif event.type == pygame.KEYUP:
@@ -582,9 +620,13 @@ def enter_city(city_name):
             elif event.type == PLAYER_MOVE_EVENT:
                 player.move(*move)
             elif event.type == DRAW_TEXT_EVENT:
-                text_draw_alpha -= (DRAW_TEXT_DELAY / 300) * 255
-                if text_draw_alpha > 0:
-                    pygame.time.set_timer(DRAW_TEXT_EVENT, DRAW_TEXT_DELAY)
+                to_remove = []
+                for message in messages.keys():
+                    messages[message] -= (DRAW_TEXT_DELAY / 2000) * 255
+                    if messages[message] <= 0:
+                        to_remove.append(message)
+                for key in to_remove:
+                    del messages[key]
         # изменяем ракурс камеры
         camera.update(player)
         # обновляем положение всех спрайтов
@@ -598,17 +640,19 @@ def enter_city(city_name):
             if not isinstance(sprite, NPC):
                 continue
             if abs(sprite.pos_x - player.pos_x) <= 1 and abs(sprite.pos_y - player.pos_y) <= 1:
-                draw_text('F/space',
+                draw_text(sprite.get_name() + ' (F/Space)',
                           x=sprite.rect.x - tile_width // 2,
                           y=sprite.rect.y - tile_height // 2,
                           foreground=(255, 255, 255),
                           background=(0, 0, 0), surface=screen)
-        if text_draw_alpha > 0:
-            draw_text(f'Получено: {player.inventory[-1]}',
+        for i, message in enumerate(messages):
+            draw_text(message,
                       x=player.rect.x - tile_width // 2,
-                      y=player.rect.y - tile_height // 2,
+                      y=player.rect.y - tile_height // 2 - i * 20,
                       foreground=(255, 255, 255),
-                      background=(0, 0, 0), surface=screen, alpha=text_draw_alpha)
+                      background=(0, 0, 0), surface=screen, alpha=messages[message])
+        draw_text("Esc - pause", 5, 10, foreground=(0, 0, 0), background=None)
+        draw_text("Tab/i - inventory", 5, 30, foreground=(0, 0, 0), background=None)
         pygame.display.flip()
         clock.tick(FPS)
 
