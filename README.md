@@ -1,4 +1,4 @@
-# Sea-Dog-PyGame-
-The game about a rich man, who becomes a captain of a ship.
+# Happy Birthday!
+С днём рождения...)
 
-"Как объединить" - вот в чем вопрос...
+ps найди Женечку...

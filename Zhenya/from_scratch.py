@@ -688,7 +688,7 @@ def town():
         'wall': load_image('icons/house.png'),
         'empty': load_image('icons/road.png')
     }
-    player_image = load_image('icons/player.png')
+    player_image = load_image('icons/cat.png')
     scipt = yield_scipt_lines()
     NEXT_UPDATE = next(scipt)
 
